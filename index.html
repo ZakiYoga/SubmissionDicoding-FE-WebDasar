@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookshelf App</title>
+
+  <!-- Impor script kamu di sini -->
+  <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script defer src="./js/main.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h4 class="title">
+        <span class="text-red">Bookshelf</span>Apps
+      </h4>
+      <ul class="navbar">
+        <li>
+          <button id="btn-search" class="btn-bookshelf">
+            Search Book
+          </button>
+        </li>
+        <li>
+          <button id="btn-addNavbar">
+            Add Book
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero-section">
+      <div class="content-hero">
+        <h1>Quickly Find, Update, or <span>Remove Books</span></h1>
+        <p>Bookshelf Apps is a simple website application for organizing your personal book collection. Easily add,
+          search, move books between shelves like 'Read' and 'Unread,' and edit or delete book details as needed.</p>
+        <a href="#bookshelf" class="btn-hero">
+          Go to Bookshelf
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="./assets/images/hero.png" alt="hero-image">
+      </div>
+    </section>
+
+    <section class="container bookshelf-section" id="bookshelf">
+      <form id="searchBook" data-testid="searchBookForm" class="search-form">
+        <div class="search">
+          <!-- <label for="searchBookTitle">Judul</label> -->
+          <input id="searchBookTitle" type="text" data-testid="searchBookFormTitleInput"
+            placeholder="Search books by title..." />
+          <button id="searchSubmit" type="submit" data-testid="searchBookFormSubmitButton">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+      <button id="showBookForm" class="btn-add">
+        <i class="fa-regular fa-square-plus"></i>
+        Add Book
+      </button>
+    </section>
+
+    <section id="addBookshelf">
+      <div class="container bookForm-container">
+
+        <h2 id="header-bookForm" class="heading">Add New <span>Book</span></h2>
+
+        <form id="bookForm" data-testid="bookForm" class="bookForm">
+          <div class="input-field">
+            <label for="bookFormTitle">Title</label>
+            <input id="bookFormTitle" type="text" required data-testid="bookFormTitleInput" />
+          </div>
+          <div class="input-field">
+            <label for="bookFormAuthor">Author</label>
+            <input id="bookFormAuthor" type="text" required data-testid="bookFormAuthorInput" />
+          </div>
+          <div class="input-field">
+            <label for="bookFormYear">Publication year</label>
+            <input id="bookFormYear" type="number" required data-testid="bookFormYearInput" />
+          </div>
+          <div class="input-checkbox">
+            <label for="bookFormIsComplete">Finished Reading ?</label>
+            <input id="bookFormIsComplete" type="checkbox" data-testid="bookFormIsCompleteCheckbox" class="checkbox" />
+          </div>
+          <button id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton">
+            Add Book to Shelf
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section class="container currenlyReading">
+      <h2 class="heading">Currenly <span>reading</span></h2>
+
+      <div id="incompleteBookList" data-testid="incompleteBookList" class="book-list">
+        <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+        <div data-bookid="123123123" data-testid="bookItem" class="book-item">
+          <img src="./assets/images/book.png" alt="book-image" class="book-cover">
+          <div class="book-content">
+            <div class="header-book">
+              <p data-testid="bookItemAuthor" class="book-author">
+                Author: Penulis Buku 1
+              </p>
+              <p id="isEditing" class="isEditing">
+                Book in edit
+              </p>
+            </div>
+            <h3 data-testid="bookItemTitle" class="book-title">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            </h3>
+            <p data-testid="bookItemYear" class="book-year">
+              Publication year : 2030
+            </p>
+          </div>
+          <div class="container-button">
+            <button data-testid="bookItemEditButton" class="btn-edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button data-testid="bookItemDeleteButton" class="btn-delete">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+            <button data-testid="bookItemIsCompleteButton" class="btn-finished">
+              <i class="fa-regular fa-circle-check"></i>
+              Mark as Read
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container finishedReading">
+      <h2 class="heading">Finished <span>reading</span></h2>
+
+      <div id="completeBookList" data-testid="completeBookList" class="book-list">
+        <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+        <div data-bookid="456456456" data-testid="bookItem" class="book-item">
+          <img src="./assets/images/book.png" alt="book-image" class="book-cover">
+          <div class="book-content">
+            <div class="header-book">
+              <p data-testid="bookItemAuthor" class="book-author">
+                Author: Penulis Buku 2
+              </p>
+              <p id="isEditing2" class="isEditing">
+                Book in edit
+              </p>
+            </div>
+            <h3 data-testid="bookItemTitle" class="book-title">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            </h3>
+            <p data-testid="bookItemYear" class="book-year">
+              Publication year : 2030
+            </p>
+          </div>
+          <div class="container-button">
+            <button data-testid="bookItemEditButton" class="btn-edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button data-testid="bookItemDeleteButton" class="btn-delete">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+            <button data-testid="bookItemIsCompleteButton" class="btn-unfinished">
+              <i class="fa-regular fa-circle-xmark"></i>
+              Mark as Unread
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 <a href="/">BookshelfApps</a>, created with <i class="fa-solid fa-heart"></i> by ZkiStr.</p>
+  </footer>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+
+</html>
